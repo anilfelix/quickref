@@ -1,0 +1,40 @@
+
+
+devise gem installation:
+	* 
+gem 'devise'
+	* 
+bundle install
+	* 
+rails g devise:install
+
+		* 
+copy the config.action_mailer from the notes to the test.rb and development.rb
+
+			* 
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+	* 
+rails g devise user
+	* 
+rake db:migrate
+
+		* 
+for both test and dev
+	* 
+edit the user factory to have sequence for email
+	* 
+to get devise helpers in rspec, in rails_helper.rb, after require 'rspec/rails' add
+
+
+require 'rspec/rails'
+require 'devise'
+
+in the configure block add
+config.include Devise::TestHelpers, type: :controller
+
+	* 
+in application controller, 
+
+		* 
+before_action :authenticate_user
+
